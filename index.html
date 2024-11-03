@@ -66,11 +66,28 @@
         "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/c.png",
     ];
 
-    // Function to generate a random image
+    // Clone the images array to keep track of remaining images without replacement
+    let remainingImages = [...images];
+
     function generateRandomImage() {
-        const randomImage = images[Math.floor(Math.random() * images.length)];
-        document.getElementById("randomImage").src = randomImage;
-        document.getElementById("imageContainer").style.display = "block";
+        // Check if remainingImages array is empty
+        if (remainingImages.length === 0) {
+            // Reset the remainingImages array if all images have been shown
+            remainingImages = [...images];
+            alert("All images have been shown. Starting over!");
+        }
+
+        // Pick a random image from the remainingImages array
+        const randomIndex = Math.floor(Math.random() * remainingImages.length);
+        const randomImageUrl = remainingImages[randomIndex];
+
+        // Display the image
+        const imgElement = document.getElementById("randomImage");
+        imgElement.src = randomImageUrl;
+        imgElement.style.display = "block";
+
+        // Remove the selected image from remainingImages
+        remainingImages.splice(randomIndex, 1);
     }
 </script>
 
