@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Local Image on Button Click</title>
+    <title>Random Image on Button Click</title>
     <style>
         body {
             margin: 0;
@@ -37,13 +37,13 @@
         }
 
         .image-container {
-            display: none; /* Hide the image container initially */
+            display: none;
             text-align: center;
             margin-top: 20px;
         }
 
         .image-container img {
-            width: 200px; /* Adjust the size as needed */
+            width: 200px;
             border-radius: 10px;
         }
     </style>
@@ -59,14 +59,18 @@
 </div>
 
 <script>
-    // List of image file names in the local folder
-    const images = ["a.png", "b.png", "c.png"]; // Update with your image filenames
+    // List of image URLs hosted on GitHub
+    const images = [
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/a.png",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/b.png",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/c.png",
+    ];
 
     // Function to generate a random image
     function generateRandomImage() {
         const randomImage = images[Math.floor(Math.random() * images.length)];
-        document.getElementById("randomImage").src = `images/${randomImage}`;
-        document.getElementById("imageContainer").style.display = "block"; // Show the image container
+        document.getElementById("randomImage").src = randomImage;
+        document.getElementById("imageContainer").style.display = "block";
     }
 </script>
 
