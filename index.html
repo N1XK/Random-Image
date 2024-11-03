@@ -12,14 +12,20 @@
             justify-content: center;
             height: 100vh;
             font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
         }
         .button-container {
-            margin-bottom: 20px;
+            position: fixed; /* Fixes button position */
+            top: 20px; /* Distance from the top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust to center */
+            margin-bottom: 20px; /* Space below the button */
+            z-index: 1000; /* Ensure button is above other elements */
         }
         .image-container img {
             max-width: 300px;
             border-radius: 10px;
-            display: none;
+            display: none; /* Initially hide the image */
         }
     </style>
 </head>
