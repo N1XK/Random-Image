@@ -19,13 +19,42 @@
             top: 20px; /* Distance from the top */
             left: 50%; /* Center horizontally */
             transform: translateX(-50%); /* Adjust to center */
-            margin-bottom: 20px; /* Space below the button */
             z-index: 1000; /* Ensure button is above other elements */
         }
+        button {
+            padding: 15px 30px; /* Padding for a larger clickable area */
+            border: none; /* Remove border */
+            border-radius: 25px; /* Rounded corners */
+            background-color: #ff4081; /* Sexy pink color */
+            color: white; /* Text color */
+            font-size: 16px; /* Font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transitions */
+        }
+        button:hover {
+            background-color: #f50057; /* Darker pink on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+        .image-container {
+            border: 5px solid #ff4081; /* Circular border color */
+            border-radius: 50%; /* Circular shape */
+            padding: 5px; /* Padding to create space for the border */
+            margin-top: 80px; /* Space below the button */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 480px; /* Fixed width for circular container */
+            height: 480px; /* Fixed height for circular container */
+            background-color: white; /* Background color of the container */
+            overflow: hidden; /* Ensures no overflow beyond the circle */
+        }
+
         .image-container img {
-            max-width: 300px;
-            border-radius: 10px;
+            width: 100%; /* Full width to fill the container */
+            height: 100%; /* Full height to fill the container */
+            object-fit: contain; /* Cover to maintain aspect ratio */
             display: none; /* Initially hide the image */
+            border-radius: 100%; /* Make the image circular */
         }
     </style>
 </head>
@@ -36,44 +65,120 @@
 </div>
 
 <div class="image-container" id="imageContainer">
-    <img id="randomImage" src="" alt="Random Image">
+    <img id="randomImage" src="" alt="Random Image" />
 </div>
+<div id="placementText" style="display: none; text-align: center; margin-top: 20px; font-size: 20px;">
+    <!-- Text will be displayed here for 5 seconds -->
+</div>
+
 
 <script>
     // List of image URLs hosted on GitHub
     const images = [
-        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/a.png",
-        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/b.png",
-        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/c.png",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/1.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/2.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/3.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/4.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/5.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/6.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/7.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/8.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/9.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/10.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/11.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/12.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/13.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/14.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/15.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/16.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/17.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/18.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/19.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/20.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/21.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/22.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/23.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/24.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/25.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/26.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/27.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/28.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/29.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/30.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/31.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/32.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/33.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/34.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/35.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/36.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/37.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/38.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/39.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/40.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/41.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/42.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/43.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/44.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/45.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/46.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/47.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/48.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/49.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/50.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/51.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/52.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/53.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/54.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/55.avif",
+        "https://raw.githubusercontent.com/N1XK/Random-Image/main/images/56.avif"
     ];
 
-    // Clone the images array to keep track of remaining images without replacement
     let remainingImages = [...images];
 
+    // Hide the image container and text initially
+    document.getElementById("imageContainer").style.display = "none";
+    document.getElementById("placementText").style.display = "none";
+
     function generateRandomImage() {
-        // Check if remainingImages array is empty
         if (remainingImages.length === 0) {
-            // Reset the remainingImages array if all images have been shown
             remainingImages = [...images];
             alert("All images have been shown. Starting over!");
         }
 
-        // Pick a random image from the remainingImages array
-        const randomIndex = Math.floor(Math.random() * remainingImages.length);
-        const randomImageUrl = remainingImages[randomIndex];
+        // Hide the image container when showing the text
+        const containerElement = document.getElementById("imageContainer");
+        containerElement.style.display = "none";
 
-        // Display the image
+        // Show the placement text
+        const placementText = document.getElementById("placementText");
+        placementText.innerText = "ဘာတွေစောင့်နေတာလဲအခန့်လေး 👀";
+        placementText.style.display = "flex"; // Use flex to center it
+        placementText.style.justifyContent = "center"; // Center horizontally
+        placementText.style.alignItems = "center"; // Center vertically
+        placementText.style.height = "100vh"; // Full viewport height for vertical centering
+
+        // Hide the image initially
         const imgElement = document.getElementById("randomImage");
-        imgElement.src = randomImageUrl;
-        imgElement.style.display = "block"; // Show the image
+        imgElement.style.display = "none";
 
-        console.log(`Displaying image: ${randomImageUrl}`); // For debugging
+        // Set a timeout to hide the text after 5 seconds and show the image
+        setTimeout(() => {
+            placementText.style.display = "none"; // Hide the text
 
-        // Remove the selected image from remainingImages
-        remainingImages.splice(randomIndex, 1);
-        console.log(`Remaining images: ${remainingImages.length}`); // For debugging
+            const randomIndex = Math.floor(Math.random() * remainingImages.length);
+            const randomImageUrl = remainingImages[randomIndex];
+
+            imgElement.src = randomImageUrl;
+            imgElement.style.display = "block"; // Show the image
+
+            containerElement.style.display = "flex"; // Show the image container
+
+            // Remove the selected image from remainingImages
+            remainingImages.splice(randomIndex, 1);
+        }, 3000); // 5000 milliseconds = 5 seconds
     }
 </script>
+
 
 </body>
 </html>
