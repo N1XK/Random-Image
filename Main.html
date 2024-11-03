@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Local Image on Button Click</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .image-container {
+            display: none; /* Hide the image container initially */
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 200px; /* Adjust the size as needed */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="button-container">
+    <button onclick="generateRandomImage()">Show Random Image</button>
+</div>
+
+<div class="image-container" id="imageContainer">
+    <img id="randomImage" src="" alt="Random Image">
+</div>
+
+<script>
+    // List of image file names in the local folder
+    const images = ["a.png", "b.png", "c.png"]; // Update with your image filenames
+
+    // Function to generate a random image
+    function generateRandomImage() {
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        document.getElementById("randomImage").src = `images/${randomImage}`;
+        document.getElementById("imageContainer").style.display = "block"; // Show the image container
+    }
+</script>
+
+</body>
+</html>
