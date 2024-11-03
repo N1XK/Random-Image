@@ -19,6 +19,7 @@
         .image-container img {
             max-width: 300px;
             border-radius: 10px;
+            display: none;
         }
     </style>
 </head>
@@ -29,7 +30,7 @@
 </div>
 
 <div class="image-container" id="imageContainer">
-    <img id="randomImage" src="" alt="Random Image" style="display: none;">
+    <img id="randomImage" src="" alt="Random Image">
 </div>
 
 <script>
@@ -58,10 +59,13 @@
         // Display the image
         const imgElement = document.getElementById("randomImage");
         imgElement.src = randomImageUrl;
-        imgElement.style.display = "block";
+        imgElement.style.display = "block"; // Show the image
+
+        console.log(`Displaying image: ${randomImageUrl}`); // For debugging
 
         // Remove the selected image from remainingImages
         remainingImages.splice(randomIndex, 1);
+        console.log(`Remaining images: ${remainingImages.length}`); // For debugging
     }
 </script>
 
